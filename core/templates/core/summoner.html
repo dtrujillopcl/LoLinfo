@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+  
+{% load static %}
+  
+{% block contenido %}
+
+<img class="border border-warning rounded-circle IconSummoner" src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/profileicon/{{ icono }}.png" alt="">
+<span class="nameSumonner">{{ nombre }}</span><span class="lvlSummoner"> Nivel: {{ nivel }}</span>
+
+{% endblock %}

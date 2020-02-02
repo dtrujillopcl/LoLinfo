@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers|Poppins&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: white;
+}
+
+header{
+    background-color: silver;
+    text-align: center;
+}
+
+.anuncio{
+background: none;
+font-size: 14px;
+margin: 0;
+padding: 0;
+}
+
+
+.nav-link{
+    color: #A4000C;
+}
+
+.nav-link:hover{
+    color: black;
+}
+
+.logo{
+    font-family: 'Bangers';
+    font-size: 150px;
+    color: #A4000C;
+}
+
+.logo:hover{
+    color: #A4000C;
+}
+
+.searchUser{
+    background: #9d0d22;
+    padding: 5px;
+}
+
+.logoLol{
+    width: 200px;
+    background: none;
+    margin: 5px;
+}
+
+.text-center{
+    background: none;
+}
+
+.input-group-append{
+    background: none;
+}
+
+.championTop{
+    height: 200px;
+}
+
+.championwin{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.textinfowin{
+    background: none;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.championwin:hover{
+    transform: scale(1.01);
+}
+
+.championTop:hover{
+    filter: blur(1px);
+}
+
+footer{
+    background: #230003;
+    color: white;
+}
+
+.socialicon{
+    height: 30px;
+    margin-left: 10px;
+}
+
+.logofooter{
+    font-family: 'Bangers';
+    font-size: 50px;
+    color: white;
+}
+
+.logofooter:hover{
+    font-family: 'Bangers';
+    font-size: 50px;
+    color: white;
+}
+
+.IconSummoner{
+    width: 130px;
+}
+
+.nameSumonner{
+    color: #A4000C;
+    font-size: 25px;
+}
+
+.lvlSummoner{
+    color: silver;
+}
+
+.champfree{
+
+}

@@ -1,0 +1,1 @@
+web: gunicorn LoLinfo.wsgi --log-file -
