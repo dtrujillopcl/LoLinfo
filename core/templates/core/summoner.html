@@ -4,7 +4,13 @@
   
 {% block contenido %}
 
-<img class="border border-warning rounded-circle IconSummoner" src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/profileicon/{{ icono }}.png" alt="">
-<span class="nameSumonner">{{ nombre }}</span><span class="lvlSummoner"> Nivel: {{ nivel }}</span>
+{% if mensajeError %}
+    <h1 class="text-center">{{mensajeError}}</h1>
+{% else %}
+<div class="text-center">
+    <img class="border-25 border-warning rounded-circle IconSummoner" src="http://ddragon.leagueoflegends.com/cdn/9.23.1/img/profileicon/{{ icono }}.png" alt="">
+    <span class="nameSumonner">{{ nombre }}</span><span class="lvlSummoner"> Nivel: {{ nivel }}</span>
+</div>
+{% endif %}
 
 {% endblock %}

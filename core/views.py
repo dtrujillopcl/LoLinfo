@@ -1,18 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import summForm
+from .forms import summForm, ranktopoption
 import requests
 
 # Variable Global que guarda la KEY de la API
 
-urlKEY = 'RGAPI-c149ab05-d53c-4672-b4c3-ae7ec8d05cd4'
+urlKEY = 'RGAPI-d3571e2f-ed4e-45fd-9a96-eae84b7be616'
 
 # Create your views here.
 
-def home(request):
-    url = 'https://la2.api.riotgames.com/lol/platform/v3/champion-rotations'
-    args = { 'api_key': urlKEY }
-    response = requests.get(url, params=args)
+def idchamp():
     all_champion_id = {
         1: "Annie",
         2: "Olaf",
@@ -161,17 +158,25 @@ def home(request):
         518: "Neeko",
         555: "Pyke",
     }
+    return all_champion_id
+
+def home(request):
+    url = 'https://la2.api.riotgames.com/lol/platform/v3/champion-rotations'
+    args = { 'api_key': urlKEY }
+    response = requests.get(url, params=args)
+    idchampconfirmed = idchamp()
+
     if response.status_code == 200:
         response_json = response.json()
         freeChampionIds = response_json['freeChampionIds']
         champfree = [] 
-        for x, y in all_champion_id.items():
+        for x, y in idchampconfirmed.items():
             for i in freeChampionIds:
                 if x == i:
                     champfree.append(y)
         data = {
             'freeChampionIds':freeChampionIds,
-            'all_champion_id':all_champion_id,
+            'all_champion_id':idchampconfirmed,
             'champfree':champfree,
             'summForm':summForm(),
         }
@@ -199,4 +204,52 @@ def summoner(request,serverid,summonerid):
             'nombre':nameinvocador,
             'nivel':levelinvocador
         }
+    else:
+        data = {
+            'mensajeError':'Nombre de Invocador No Encontrado'
+        }
     return render(request, 'core/summoner.html', data)
+
+def ranktop(request):
+    data = {
+        'ranktopoption':ranktopoption
+    }
+    return render(request, 'core/ranktop.html', data)
+
+def champs(request):
+    _idchamp = idchamp()
+    tag_champ = {}
+    for x, y in _idchamp.items():
+        url = 'http://ddragon.leagueoflegends.com/cdn/10.2.1/data/es_AR/champion/'+y+'.json'
+        response = requests.get(url)
+        if response.status_code == 200:
+            response_json = response.json()
+            datachamp = response_json['data']
+            identifiedchamp = datachamp[y]
+            tagchamp = identifiedchamp['tags']
+            tag_champ[y] = tagchamp
+            data = {
+                'idchamp':_idchamp.values(),
+                'tag_champ':tag_champ
+            }
+    return render(request, 'core/champs.html', data)
+
+def championid(request,champid):
+
+    url = 'http://ddragon.leagueoflegends.com/cdn/10.2.1/data/es_AR/champion/'+champid+'.json'
+    response = requests.get(url)
+    if response.status_code == 200:
+        response_json = response.json()
+        datachamp = response_json['data']
+        identifiedchamp = datachamp[champid]
+        titlechamp = identifiedchamp['title']
+        namechamp = identifiedchamp['id']
+        tagchamp = identifiedchamp['tags']
+        imagechamp = 'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/'+namechamp+'_0.jpg'
+        data = {
+            'namechamp':namechamp,
+            'titlechamp':titlechamp.capitalize(),
+            'imagechamp':imagechamp,
+            'tagchamp':tagchamp
+        }
+    return render(request, 'core/champsid.html',data)

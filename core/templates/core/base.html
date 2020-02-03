@@ -24,10 +24,10 @@
           <a class="nav-link" href="#">Meta</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Ranking</a>
+          <a class="nav-link" href="{% url 'ranktop' %}">Ranking</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Campeones</a>
+            <a class="nav-link" href="{% url 'champs' %}">Campeones</a>
         </li>
     </ul>
 </div>
@@ -36,7 +36,7 @@
 
     <div class="text-center">
         <p>
-            Todo la informacion que nesecitas para tus Rankeds, la encontraras aqui. 
+            Todo la informacion que necesitas para tus Rankeds, la encontraras aqui. 
         </p>
     </div>
 
@@ -45,7 +45,7 @@
 {% block contenido %}
 
 {% endblock %}
-
+</div>
 <!--Aqui Termina-->
 <footer>
     <div class="text-center"> 
